@@ -4,11 +4,10 @@ const ExperienceSchema = new Schema({
     company: String,
     position: String,
     address: String,
-    address: String,
     city: String,
     startDate: String,
     endDate: String,
-    summary: String,
+    jobSummary: String,
 });
 
 const EducationSchema = new Schema({
@@ -18,7 +17,7 @@ const EducationSchema = new Schema({
     city: String,
     startDate: String,
     endDate: String,
-    summary: String,
+    educationSummary: String,
 });
 
 const SkillSchema = new Schema({

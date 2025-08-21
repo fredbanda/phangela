@@ -1,6 +1,7 @@
 import { useResume } from '@/context/resume';
 import PersonalDetails from '../previews/personal-details';
 import Summary from '../previews/summary';
+import ExperiencePreview from '../previews/experience-preview';
 
 export default function PreviewCard() {
     const {resume} = useResume();
@@ -11,6 +12,7 @@ export default function PreviewCard() {
     >
       <PersonalDetails resume={resume} />
       <Summary resume={resume} />
+      <ExperiencePreview resume={resume} />
     </div>
   );
 }

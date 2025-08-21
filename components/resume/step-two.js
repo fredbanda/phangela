@@ -1,5 +1,4 @@
 import { useResume } from '@/context/resume';
-import { Textarea } from '../ui/textarea';
 import { Button } from '../ui/button';
 import { useState } from 'react';
 import { Brain, Loader2 } from 'lucide-react';
@@ -33,10 +32,10 @@ export default function StepTwo() {
       return;
     }
     const response = await generateSummary(`
-Generate a professional resume summary of 50 to 75 words for a person with the following details: ${JSON.stringify(
+Generate a professional resume summary of 35 to 75 words for a person with the following details: ${JSON.stringify(
       resume
     )}. 
-Begin with a strong statement highlighting the candidate's role, expertise, or unique value (e.g., "Full Stack Web Developer with...," "Experienced Software Engineer specializing in...," or "Versatile developer skilled in..."). 
+Begin with a strong statement highlighting the candidate's role, expertise, or unique value (e.g., "Full Stack Web Developer with...," "Experienced Software Engineer specializing in...," or "Versatile developer skilled in..." Keep it changing so as to make sure every summary is unique please). 
 Keep the tone professional, concise, and impactful.
 `);
 

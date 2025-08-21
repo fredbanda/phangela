@@ -72,3 +72,60 @@ export const updateResumeFromDB = async (data) => {
     throw new Error(error);
   }
 };
+
+export const updateExperienceOnDB = async (data) => {
+  try {
+    dbConnect();
+    const { _id, experience } = data; // ✅ only pick what you need
+    await checkOwnership(_id);
+
+    const resume = await Resume.findByIdAndUpdate(
+      _id,
+      { experience },   // ✅ now it’s just the array
+      { new: true, runValidators: true }
+    );
+
+    return JSON.parse(JSON.stringify(resume));
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+export const updateEducationOnDB = async (data) => {
+  try {
+    dbConnect();
+    const { _id, education } = data; // ✅ only pick what you need
+    await checkOwnership(_id);
+
+    const resume = await Resume.findByIdAndUpdate(
+      _id,
+      { education },   // ✅ now it’s just the array
+      { new: true, runValidators: true }
+    );
+
+    return JSON.parse(JSON.stringify(resume));
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+export const getEducationFromDB = async (_id) => {
+  try {
+    dbConnect();
+    const resume = await Resume.findById(_id);
+    return JSON.parse(JSON.stringify(resume));
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+export const getExperienceFromDB = async (_id) => {
+  try {
+    dbConnect();
+    const resume = await Resume.findById(_id);
+    return JSON.parse(JSON.stringify(resume));
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
