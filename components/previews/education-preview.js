@@ -1,5 +1,5 @@
 export default function EducationPreview({ resume }) {
-  // Format the month and year for the start and end dates
+// Format the month and year for the start and end dates
   function formatMonthYear(dateString) {
     if (!dateString) return '';
 
@@ -16,7 +16,7 @@ export default function EducationPreview({ resume }) {
       month: 'short',
       year: 'numeric',
     }).format(date);
-  }
+  };
 
   return (
     <div className="my-6">

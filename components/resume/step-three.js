@@ -67,7 +67,9 @@ export default function StepThree({ resume }) {
               type="month"
               placeholder="Job end date"
               onChange={(e) => handleExperienceChange(e, index)}
-              value={experience.startDate ? experience.startDate.slice(0, 7) : ''} // YYYY-MM
+              value={
+                experience.startDate ? experience.startDate.slice(0, 7) : ''
+              } // YYYY-MM
               className="mb-3"
             />
             <Input

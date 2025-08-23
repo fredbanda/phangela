@@ -6,6 +6,8 @@ export default function SkillsPreview({ resume, print = false }) {
   // optional: map numeric level to labels
   const labels = ["Beginner", "Intermediate", "Advanced", "Expert"]
 
+  
+
   return (
     <div className="my-6">
       <h2 className="font-bold text-sm mb-2">Skills</h2>

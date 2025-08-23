@@ -3,7 +3,8 @@ const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 import 'react-quill/dist/quill.snow.css';
 
 export default function ExperiencePreview({ resume }) {
-  // Format the month and year for the start and end dates
+
+// Format the month and year for the start and end dates
   function formatMonthYear(dateString) {
     if (!dateString) return '';
 

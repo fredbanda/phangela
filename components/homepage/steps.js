@@ -1,6 +1,6 @@
 export default function HowItWorks() {
   return (
-    <div className="bg-indigo-800 dark:bg-gray-800 py-16 mt-[-136px] ">
+    <div className="bg-indigo-800 dark:bg-gray-800 py-16 mt-[-100px] ">
       <div className="mx-auto  px-6 lg:px-8">
         <div className="mx-auto sm:text-center mb-14">
           <p className="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">
