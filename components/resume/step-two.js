@@ -1,3 +1,5 @@
+"use client";
+
 import { useResume } from '@/context/resume';
 import { Button } from '../ui/button';
 import { useState } from 'react';
@@ -68,24 +70,12 @@ Keep the tone professional, concise, and impactful.
       </div>
 
       <div className="w-full m-[-8px]">
-        {/* <Textarea
-          onChange={(e) => setResume({ ...resume, summary: e.target.value })}
-          value={resume.summary}
-          placeholder="Write a summary of your experience"
-          className="mb-3"
-          type="text"
-          rows={10}
-          name="summary"
-          required
-          autoFocus
-        /> */}
-
         <ReactQuill
-        theme='snow'
-        onChange={e => setResume({ ...resume, summary: e })}
-        value={resume.summary}
-   
-         />
+          theme="snow"
+          onChange={(e) => setResume({ ...resume, summary: e })}
+          value={resume.summary}
+          className='mt-8'
+        />
       </div>
       <div className="flex justify-end mb-4 mt-4 mr-2">
         <Button onClick={handleSubmit} className="w-1/4">

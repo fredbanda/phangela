@@ -1,3 +1,5 @@
+'use client';
+
 import { useResume } from '@/context/resume';
 import dynamic from 'next/dynamic';
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
@@ -6,7 +8,7 @@ import { Button } from '../ui/button';
 import { ArrowBigRight, Brain, Loader2Icon, Plus, X } from 'lucide-react';
 import { Input } from '../ui/input';
 
-export default function StepThree() {
+export default function StepThree({ resume }) {
   const {
     experienceList,
     handleExperienceQuillChange,
@@ -19,7 +21,12 @@ export default function StepThree() {
   } = useResume();
   return (
     <div className="w-full p-5 shadow-lg border-t-4 rounded-lg overflow-x-auto">
-      <h2 className="text-2xl font-bold mb-5">Experiences</h2>
+      <h2
+        className="text-2xl font-bold mb-5"
+        style={{ color: resume?.themeColor }}
+      >
+        Work Experiences
+      </h2>
       {experienceList?.length > 0 &&
         experienceList.map((experience, index) => (
           <div key={index} className="mb-10">
@@ -57,20 +64,21 @@ export default function StepThree() {
             />
             <Input
               name="startDate"
-              type="text"
-              placeholder="Job start date eg. January, 2020"
+              type="month"
+              placeholder="Job end date"
               onChange={(e) => handleExperienceChange(e, index)}
-              value={experience.startDate || ''}
+              value={experience.startDate ? experience.startDate.slice(0, 7) : ''} // YYYY-MM
               className="mb-3"
             />
             <Input
               name="endDate"
-              type="text"
-              placeholder="Job end date eg. December, 2021"
+              type="month"
+              placeholder="Job end date"
               onChange={(e) => handleExperienceChange(e, index)}
-              value={experience.endDate || ''}
+              value={experience.endDate ? experience.endDate.slice(0, 7) : ''} // YYYY-MM
               className="mb-3"
             />
+
             <ReactQuill
               theme="snow"
               value={experience.jobSummary || ''}

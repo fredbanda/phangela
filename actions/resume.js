@@ -129,3 +129,33 @@ export const getExperienceFromDB = async (_id) => {
   }
 };
 
+export const updateSkillsOnDB = async (data) => {
+  try {
+    dbConnect();
+    const { _id, skills } = data; // ✅ only pick what you need
+    await checkOwnership(_id);
+
+    const resume = await Resume.findByIdAndUpdate(
+      _id,
+      { skills },   // ✅ now it’s just the array
+      { new: true, runValidators: true }
+    );
+
+    return JSON.parse(JSON.stringify(resume));
+  } catch (error) {
+    
+  }
+};
+
+export const deleteResumeFromDB = async (_id) => {
+  console.log("Deleting resume with ID:", _id);
+  
+  try {
+    dbConnect();
+    const resume = await Resume.findByIdAndDelete(_id);
+    return JSON.parse(JSON.stringify(resume));
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+

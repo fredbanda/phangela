@@ -25,6 +25,14 @@ const SkillSchema = new Schema({
     level: String,
 });
 
+const PortfolioSchema = new Schema({
+    title: String,
+    description: String,
+    url: String,
+    createdAt: Date,
+    updatedAt: Date,
+});
+
 const ResumeSchema = new Schema(
   {
     userEmail: {
@@ -39,11 +47,14 @@ const ResumeSchema = new Schema(
     phone: String,
     location: String,
     city: String,
+    github: String,
+    linkedin: String,
     summary: String,
     themeColor: String,
     experience: [ExperienceSchema],
     education: [EducationSchema],
     skills: [SkillSchema],
+    portfolio: [PortfolioSchema],
   },
   {
     timestamps: true,
