@@ -33,7 +33,7 @@ export default function StepOneCreate() {
   };
 
   return (
-    <div className="w-full p-5 shadow-lg border-t-4 rounded-lg">
+    <div className="w-full p-5 shadow-lg border-t-4 rounded-lg mb-20">
       <h2
         className="text-2xl font-bold m-5"
         style={{ color: resume?.themeColor }}
@@ -146,7 +146,7 @@ export default function StepOneCreate() {
         />
         <p className="text-sm text-gray-600 text-bold ml-3 mt-16">
           Pick a theme color for your resume. Be advised that black and white is
-          highly recommeded.
+          highly recommended.
         </p>
       </div>
       <div className="flex justify-end">
