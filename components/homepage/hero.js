@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function HeroBanner() {
   return (
   <div className="w-full flex h-screen justify-center items-center dark:bg-slate-800">
@@ -26,10 +28,10 @@ export default function HeroBanner() {
               The AI Resume Builder designed to help you stand out with professional, ATS-ready resumes—completely free, forever. Helping our unemployed South Africans with one CV at a time.
             </p>
             <div className="mt-5 sm:mt-8 sm:flex sm:justify-center">
-                <div className="rounded-md shadow"><a
+                <div className="rounded-md shadow"><Link
                         className="flex w-full items-center justify-center rounded-md border border-transparent bg-blue-600 px-8 py-3 text-base font-medium text-white hover:bg-blue-700 md:py-4 md:px-10 md:text-lg"
                         href="/resume/create">Get started for free 🚀
-                    </a>
+                    </Link>
                 </div>
             </div>
         </div>

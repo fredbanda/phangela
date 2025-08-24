@@ -5,11 +5,11 @@ import ExperiencePreview from '../previews/experience-preview';
 import EducationPreview from '../previews/education-preview';
 import SkillsPreview from '../previews/skills-preview';
 
-export default function PreviewCard() {
+export default function PrintPreviewCard() {
   const { resume } = useResume();
   if (!resume) {
     return (
-      <div className="w-full flex items-center justify-center rounded-xl border border-dashed border-gray-300 text-gray-500 h-screen overflow-y-auto">
+      <div className="w-full flex items-center justify-center rounded-xl border border-dashed border-gray-300 text-gray-500 h-screen ">
         ⚠️ No resume loaded. Please create or select a resume to preview.
       </div>
     );
@@ -42,7 +42,7 @@ export default function PreviewCard() {
       `}</style>
 
       <div
-        className="preview-card w-full rounded-xl border-t-[20px] transition-all duration-200 max-h-screen  mt-auto lg:mt-[780px] overflow-y-auto"
+        className="preview-card w-full rounded-xl border-t-[20px] transition-all duration-200 max-h-screen overflow-y-auto mt-auto"
         style={{
           borderColor: resume?.themeColor || '#fafcff',
           height: 'auto',

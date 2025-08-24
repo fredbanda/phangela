@@ -4,15 +4,18 @@ import { Button } from '@/components/ui/button';
 import DownloadIcon from "../../../../../assets/downloadicon.png";
 import PrintIcon from "../../../../../assets/printericon.png";
 import ShareIcon from "../../../../../assets/shareicon.png";
+import EditIcon from "../../../../../assets/editicon.png";
 import Image from 'next/image';
 import { useResume } from '@/context/resume';
 import { useState, useEffect, useRef } from 'react';
 import html2pdf from 'html2pdf.js';
-import PreviewCard from '@/components/cards/preview-card';
+import PrintPreviewCard from '@/components/cards/print-preview-card';
+import { useRouter } from 'next/navigation';
 
 export default function DownloadResumePage({ params }) {
   const { resumes } = useResume();
   const [currentResume, setCurrentResume] = useState(null);
+  const router = useRouter();
   const [scale, setScale] = useState(() => {
     if (typeof window !== 'undefined') {
       const windowWidth = window.innerWidth;
@@ -210,7 +213,7 @@ export default function DownloadResumePage({ params }) {
           }}
         >
           {currentResume ? (
-            <PreviewCard resume={currentResume} />
+            <PrintPreviewCard resume={currentResume} />
           ) : (
             <div className="flex justify-center items-center h-32 sm:h-64">
               <p className="text-sm sm:text-base">Loading resume...</p>
@@ -221,6 +224,23 @@ export default function DownloadResumePage({ params }) {
         {/* Mobile-friendly action buttons */}
         <div className="flex flex-col sm:flex-row sm:justify-center gap-4 sm:gap-10 mt-6 sm:mt-8 px-4">
           {/* Download Button */}
+          <div className="flex flex-col items-center">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 mb-2 relative">
+              <Image 
+                src={EditIcon} 
+                alt="edit icon" 
+                fill
+                className="object-contain"
+              />
+            </div>
+            <Button 
+              onClick={() => router.push(`/dashboard/resume/edit/${params._id}`)}
+              className="w-full sm:w-32 text-sm" 
+              disabled={!currentResume}
+            >
+              Edit
+            </Button>
+          </div>
           <div className="flex flex-col items-center">
             <div className="w-10 h-10 sm:w-12 sm:h-12 mb-2 relative">
               <Image 
