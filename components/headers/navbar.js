@@ -68,7 +68,7 @@ export default function Navbar() {
 
         {/* Mobile Hamburger */}
         <button
-          className="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 dark:bg-white hover:dark:bg-white/80"
+          className="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800  "
           onClick={() => setMenuOpen(!menuOpen)}
         >
           {menuOpen ? <X size={22} /> : <Menu size={22} />}
