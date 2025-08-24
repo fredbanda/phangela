@@ -14,7 +14,7 @@ export default function ResumeEditPage() {
   return (
     <div className="flex flex-col lg:flex-row h-screen ">
       {/* Right Preview */}
-      <div className="flex flex-col lg:w-1/2 p-4 lg:order-last lg:flex lg:justify-center lg:items-center lg:mt-48">
+      <div className="flex flex-col lg:w-1/2 p-4 lg:order-last lg:flex lg:justify-center lg:items-center lg:mt-28">
         <PreviewCard />
       </div>
 

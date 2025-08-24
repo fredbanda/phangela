@@ -6,6 +6,7 @@ import { Poppins } from 'next/font/google';
 import { ResumeProvider } from '@/context/resume';
 import { ClerkProvider } from '@clerk/nextjs';
 import { Toaster } from 'react-hot-toast';
+import Footer from '@/components/headers/footer';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -36,7 +37,9 @@ export default function RootLayout({ children, ...props }) {
           <ResumeProvider>
             <Navbar />
             {children}
+           
             <Toaster />
+             <Footer />
           </ResumeProvider>
         </ThemeProvider>
       </body>

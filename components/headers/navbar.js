@@ -1,12 +1,11 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { ThemeToggle } from './theme-toggle';
 import Image from 'next/image';
 import Logo from '../../assets/logo.png';
 import Link from 'next/link';
 import {
-  SignIn,
   SignInButton,
   SignedIn,
   SignedOut,
@@ -14,43 +13,51 @@ import {
   useUser,
 } from '@clerk/nextjs';
 import { Button } from '../ui/button';
+import { Menu, X } from 'lucide-react';
 
 export default function Navbar() {
   const { isSignedIn, user } = useUser();
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
-    <nav className="flex justify-between items-center  p-1 shadow">
+    <nav className="flex items-center justify-between p-3 shadow-md bg-white dark:bg-gray-900 relative">
+      {/* Logo */}
       <Link href="/" className="flex items-center">
         <Image
           src={Logo}
           alt="Logo"
-          width={20}
-          height={10}
-          className="rotate-90 mr-2 ml-3"
+          width={30}
+          height={30}
+          className="rotate-90 mr-2"
         />
         <span className="text-xl font-bold hidden md:block">Phangela</span>
       </Link>
 
-      <div className="flex justify-end items-center gap-3">
+      {/* Desktop Menu */}
+      <div className="hidden md:flex gap-6 items-center text-white">
+        <Link href="/resume/create">Create Resume</Link>
+        <Link href="/vacancies">Current Vacancies</Link>
+        <Link href="/jobs/create">Post A Job</Link>
+        <Link href="/supportus">Support the Project</Link>
+      </div>
+
+      {/* Right Section */}
+      <div className="flex items-center gap-3">
         <SignedOut>
           <SignInButton mode="modal">
             <Button
               variant="outline"
-              className="px-3 py-1 rounded  text-white dark:text-gray-700"
+              className="px-3 py-1 rounded text-white  dark:text-white"
             >
               Sign In
             </Button>
           </SignInButton>
         </SignedOut>
 
-        {/* <SignedIn>
-          <Link href="/dashboard">{user?.fullName}&apos;s Dashboard</Link>
-          <UserButton />
-        </SignedIn> */}
-
         <SignedIn>
           <button
             onClick={() => (window.location.href = '/dashboard')}
-            // className="text-blue-600 hover:underline"
+            className="text-md font-medium hover:underline text-white"
           >
             {user?.fullName}&apos;s Dashboard
           </button>
@@ -58,7 +65,33 @@ export default function Navbar() {
         </SignedIn>
 
         <ThemeToggle />
+
+        {/* Mobile Hamburger */}
+        <button
+          className="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 dark:bg-white hover:dark:bg-white/80"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          {menuOpen ? <X size={22} /> : <Menu size={22} />}
+        </button>
       </div>
+
+      {/* Mobile Dropdown */}
+      {menuOpen && (
+        <div className="fixed top-[64px] inset-x-0 bg-white dark:bg-gray-900 shadow-md flex flex-col items-start p-4 space-y-4 md:hidden dark:text-white z-50">
+          <Link href="/resume/create" onClick={() => setMenuOpen(false)} className='cursor-pointer'>
+            Create Resume
+          </Link>
+          <Link href="/vacancies" onClick={() => setMenuOpen(false)} className='cursor-pointer'>
+            Current Vacancies
+          </Link>
+          <Link href="/jobs/create" onClick={() => setMenuOpen(false)} className='cursor-pointer'>
+            Post A Job
+          </Link>
+          <Link href="/supportus" onClick={() => setMenuOpen(false)} className='cursor-pointer'>
+            Support the Project
+          </Link>
+        </div>
+      )}
     </nav>
   );
 }
