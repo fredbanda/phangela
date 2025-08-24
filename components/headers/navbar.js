@@ -47,7 +47,7 @@ export default function Navbar() {
           <SignInButton mode="modal">
             <Button
               variant="outline"
-              className="px-3 py-1 rounded text-white  dark:text-white"
+              className="px-3 py-1 rounded text-white  dark:text-white bg-gray-700"
             >
               Sign In
             </Button>
@@ -71,7 +71,7 @@ export default function Navbar() {
           className="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-white "
           onClick={() => setMenuOpen(!menuOpen)}
         >
-          {menuOpen ? <X size={22} /> : <Menu size={22} />}
+          {menuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
