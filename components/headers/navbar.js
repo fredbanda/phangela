@@ -57,7 +57,7 @@ export default function Navbar() {
         <SignedIn>
           <button
             onClick={() => (window.location.href = '/dashboard')}
-            className="text-md font-medium hover:underline text-white"
+            className="text-md font-medium hover:underline text-white "
           >
             {user?.fullName}&apos;s Dashboard
           </button>
@@ -68,7 +68,7 @@ export default function Navbar() {
 
         {/* Mobile Hamburger */}
         <button
-          className="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800  "
+          className="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-white "
           onClick={() => setMenuOpen(!menuOpen)}
         >
           {menuOpen ? <X size={22} /> : <Menu size={22} />}

@@ -12,7 +12,7 @@ export default function HowItWorks() {
           <h3 className="text-2xl font-semibold mb-2 transition-colors duration-300 hover:text-blue-500">
             Add Your Details
           </h3>
-          <p className="text-gray-600 dark:text-white">Add your details to create you CV / Resume.</p>
+          <p className="">Add your details to create you CV / Resume.</p>
         </div>
         <div className="service-card  rounded-lg shadow-lg p-6 text-center">
           <div className="text-5xl mb-4 transition-transform duration-300 transform hover:scale-110">
@@ -21,7 +21,7 @@ export default function HowItWorks() {
           <h3 className="text-2xl font-semibold mb-2 transition-colors duration-300 hover:text-blue-500">
             Proof Read
           </h3>
-          <p className="text-gray-600 dark:text-white">Proof read your CV / Resume to ensure it's error free.</p>
+          <p className="">Proof read your CV / Resume to ensure it's error free.</p>
         </div>
         <div className="service-card  rounded-lg shadow-lg p-6 text-center">
           <div className="text-5xl mb-4 transition-transform duration-300 transform hover:scale-110">
@@ -30,7 +30,7 @@ export default function HowItWorks() {
           <h3 className="text-2xl font-semibold mb-2 transition-colors duration-300 hover:text-blue-500">
             Download PDF
           </h3>
-          <p className="text-gray-600 dark:text-white">Download your CV / Resume in PDF format and ATS check it.</p>
+          <p className="">Download your CV / Resume in PDF format and ATS check it.</p>
         </div>
         <div className="service-card  rounded-lg shadow-lg p-6 text-center">
           <div className="text-5xl mb-4 transition-transform duration-300 transform hover:scale-110">
@@ -39,7 +39,7 @@ export default function HowItWorks() {
           <h3 className="text-2xl font-semibold mb-2 transition-colors duration-300 hover:text-blue-500">
             Share Your CV
           </h3>
-          <p className="text-gray-600 dark:text-gray-200">Share your CV / Resume with your network and employers.</p>
+          <p className="">Share your CV / Resume with your network and employers.</p>
         </div>
       </div>
     </div>

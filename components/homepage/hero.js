@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export default function HeroBanner() {
   return (
-    <div className="w-full flex h-screen justify-center items-center dark:bg-slate-800">
+    <div className="w-full flex h-screen justify-center items-center dark:bg-slate-800 ">
       <div className="mx-auto flex justify-center px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8">
         <div className="text-center ">
           <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-slate-200 sm:text-5xl md:text-6xl">
