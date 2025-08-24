@@ -77,7 +77,7 @@ export default function Navbar() {
 
       {/* Mobile Dropdown */}
       {menuOpen && (
-        <div className="fixed top-[64px] inset-x-0 bg-white dark:bg-gray-900 shadow-md flex flex-col items-start p-4 space-y-4 md:hidden dark:text-white z-50">
+        <div className="fixed top-[64px] inset-x-0 bg-white dark:bg-gray-900 shadow-md flex flex-col z-50 items-start p-4 space-y-4 md:hidden dark:text-white ">
           <Link href="/resume/create" onClick={() => setMenuOpen(false)} className='cursor-pointer'>
             Create Resume
           </Link>
