@@ -36,6 +36,7 @@ export default function Navbar() {
       {/* Desktop Menu */}
       <div className="hidden md:flex gap-6 items-center text-white">
         <Link href="/resume/create">Create Resume</Link>
+        <Link href="/dashboard">Dashboard</Link>
         <Link href="/vacancies">Current Vacancies</Link>
         <Link href="/jobs/create">Post A Job</Link>
         <Link href="/supportus">Support the Project</Link>
@@ -80,6 +81,9 @@ export default function Navbar() {
         <div className="fixed top-[64px] inset-x-0 bg-white dark:bg-gray-900 shadow-md flex flex-col z-50 items-start p-4 space-y-4 md:hidden dark:text-white ">
           <Link href="/resume/create" onClick={() => setMenuOpen(false)} className='cursor-pointer'>
             Create Resume
+          </Link>
+          <Link href="/dashboard" onClick={() => setMenuOpen(false)} className='cursor-pointer'>
+           Dashboard
           </Link>
           <Link href="/vacancies" onClick={() => setMenuOpen(false)} className='cursor-pointer'>
             Current Vacancies
