@@ -329,8 +329,9 @@ const ResumeActions = ({ currentResume, params, resumeRef }) => {
         </div>
         <Button 
           onClick={() => router.push(`/dashboard/resume/edit/${params._id}`)}
-          className="w-full sm:w-32 text-sm" 
+          className="w-full sm:w-32 text-sm bg-emerald-700 hover:bg-emerald-400 text-white" 
           disabled={!currentResume}
+          
         >
           Edit
         </Button>
@@ -358,7 +359,7 @@ const ResumeActions = ({ currentResume, params, resumeRef }) => {
               }
               return (
                 <Button 
-                  className="w-full sm:w-32 text-sm"
+                  className="w-full sm:w-32 text-sm bg-black text-white"
                   disabled={loading}
                 >
                   {loading ? 'Generating...' : error ? 'Error - Try Again' : 'Download PDF'}
@@ -367,7 +368,7 @@ const ResumeActions = ({ currentResume, params, resumeRef }) => {
             }}
           </PDFDownloadLink>
         ) : (
-          <Button className="w-full sm:w-32 text-sm" disabled>
+          <Button className="w-full sm:w-32 text-sm bg-black text-white" disabled>
             Download PDF
           </Button>
         )}
@@ -385,7 +386,7 @@ const ResumeActions = ({ currentResume, params, resumeRef }) => {
         </div>
         <Button 
           onClick={printResume} 
-          className="w-full sm:w-32 text-sm" 
+          className="w-full sm:w-32 text-sm bg-orange-500 text-white" 
           disabled={!currentResume}
         >
           Print
@@ -404,7 +405,7 @@ const ResumeActions = ({ currentResume, params, resumeRef }) => {
         </div>
         <Button 
           onClick={shareResume} 
-          className="w-full sm:w-32 text-sm" 
+          className="w-full sm:w-32 text-sm bg-red-600 text-white" 
           disabled={!currentResume}
         >
           Share

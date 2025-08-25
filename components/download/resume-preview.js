@@ -48,7 +48,7 @@ const ResumePreview = ({ currentResume, resumeRef }) => {
   return (
     <div 
       ref={resumeRef}
-      className="resume-pdf-container shadow-lg mx-auto bg-white overflow-hidden mb-10"
+      className="resume-pdf-container shadow-lg mx-auto bg-white overflow-hidden mb-10 text-black"
       style={{
         width: 'min(100%, 210mm)',
         minHeight: 'auto',
