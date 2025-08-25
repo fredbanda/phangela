@@ -1,18 +1,17 @@
-import localFont from 'next/font/local';
 import './globals.css';
 import { ThemeProvider } from '@/context/theme';
 import Navbar from '@/components/headers/navbar';
-import { Poppins } from 'next/font/google';
 import { ResumeProvider } from '@/context/resume';
 import { ClerkProvider } from '@clerk/nextjs';
 import { Toaster } from 'react-hot-toast';
 import Footer from '@/components/headers/footer';
+import { Inter } from 'next/font/google';
 
-const poppins = Poppins({
+const inter = Inter({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
   display: 'swap',
-  variable: '--font-poppins',
+  variable: '--font-inter',
   fallback: ['sans-serif'],
 });
 
@@ -26,7 +25,7 @@ export default function RootLayout({ children, ...props }) {
   return (
     <ClerkProvider>
           <html lang="en" suppressHydrationWarning>
-      <body className={`${poppins.className} bg-background text-foreground`}>
+      <body className={`${inter.className} bg-background text-foreground`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

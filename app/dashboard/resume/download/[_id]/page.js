@@ -10,6 +10,9 @@ import { useResume } from '@/context/resume';
 import { useState, useEffect, useRef } from 'react';
 import PrintPreviewCard from '@/components/cards/print-preview-card';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import styles from "../../../../../components/download/resume-styles"
+import Coffee from "../../../../../assets/coffee-cup.png";
 
 // React-PDF imports
 import { Document, Page, Text, View, StyleSheet, PDFDownloadLink, Font } from '@react-pdf/renderer';
@@ -27,94 +30,6 @@ try {
   console.error('Font registration failed:', error);
 }
 
-// PDF Styles - Clean and ATS-friendly
-const styles = StyleSheet.create({
-  page: {
-    flexDirection: 'column',
-    backgroundColor: '#FFFFFF',
-    padding: 40,
-    fontFamily: 'Helvetica', // Changed from 'Inter' to system font as fallback
-    fontSize: 10,
-    lineHeight: 1.4,
-  },
-  header: {
-    marginBottom: 20,
-    textAlign: 'center',
-  },
-  name: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 8,
-    color: '#1a1a1a',
-  },
-  jobTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 8,
-    color: '#1a1a1a',
-  },
-  contactInfo: {
-    fontSize: 10,
-    color: '#4a4a4a',
-    marginBottom: 2,
-  },
-  section: {
-    marginBottom: 16,
-  },
-  sectionTitle: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    marginBottom: 8,
-    color: '#1a1a1a',
-    textTransform: 'uppercase',
-    letterSpacing: 1,
-  },
-  jobTitle: {
-    fontSize: 12,
-    fontWeight: 'bold',
-    marginBottom: 2,
-    color: '#1a1a1a',
-    marginTop: 4,
-  },
-  company: {
-    fontSize: 11,
-    fontWeight: 'bold',
-    color: '#4a4a4a',
-    marginBottom: 2,
-  },
-  dateLocation: {
-    fontSize: 9,
-    color: '#666',
-    marginBottom: 4,
-  },
-  description: {
-    fontSize: 10,
-    lineHeight: 1.4,
-    marginBottom: 8,
-    color: '#333',
-  },
-  bulletPoint: {
-    fontSize: 10,
-    marginBottom: 3,
-    paddingLeft: 12,
-    color: '#333',
-  },
-  skillsContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 8,
-  },
-  skillItem: {
-    fontSize: 10,
-    color: '#333',
-    marginBottom: 4,
-  },
-  divider: {
-    borderBottomWidth: 1,
-    borderBottomColor: '#e0e0e0',
-    marginBottom: 12,
-  },
-});
 
 // Helper function to safely get nested properties
 const safeGet = (obj, path, defaultValue = '') => {
@@ -869,6 +784,21 @@ const printResume = () => {
         <p className="text-gray-600 mb-6 sm:mb-10 text-sm sm:text-base px-2">
           Your resume is now optimized for ATS systems with searchable text and proper formatting.
           Download as PDF, print, or share with your network.
+        </p>
+
+        <p className="text-gray-600 mb-6 sm:mb-10 text-sm sm:text-base px-2 font-bold">
+          As a free app you can support us to keep the hosting to help more unemployed South Africans.
+          <br />
+          <Link href="https://www.buymeacoffee.com/phangela" target="_blank">
+            <Image
+              src={Coffee}
+              alt="Buy Me A Coffee"
+              width={60}
+              height={20}
+              className="mx-auto mt-3" 
+            />
+          </Link>
+
         </p>
 
         {/* Resume Preview */}

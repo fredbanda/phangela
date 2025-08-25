@@ -33,7 +33,7 @@ export default function StepOneCreate() {
   };
 
   return (
-    <div className="w-full p-5 shadow-lg border-t-4 rounded-lg mb-20">
+    <div className="w-full p-5 shadow-lg border-t-4 rounded-lg mb-40">
       <h2
         className="text-2xl font-bold m-5"
         style={{ color: resume?.themeColor }}
