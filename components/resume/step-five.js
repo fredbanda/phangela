@@ -19,7 +19,7 @@ export default function StepFive() {
     { label: 'Expert', value: 4 },
   ];
   return (
-    <div className="w-full p-4 sm:p-5 shadow-lg border-t-4 rounded-lg overflow-y-auto">
+    <div className="w-full p-4 sm:p-5 shadow-lg border-t-4 rounded-lg overflow-y-auto mb-20">
       <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-5">Skills</h2>
 
       {skillsList.length > 0 &&

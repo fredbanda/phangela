@@ -1,6 +1,6 @@
-import Image from 'next/image';
-import Logo from '../../assets/logo.png';
 import Link from 'next/link';
+import WhatsApp from "../../assets/whatsapp.png"
+import Image from 'next/image';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -13,8 +13,12 @@ export default function Footer() {
             <div className="px-4 w-full text-center sm:w-auto sm:text-left">
               Copyright © {currentYear}. All Rights Reserved.
             </div>
+            <Link href="https://wa.me/27814402910">
+                <Image src={WhatsApp} alt="WhatsApp" className="w-10 h-10 mr-2 items-center" />
+              </Link>
+
             <div className="px-4 w-full text-center sm:w-auto sm:text-left">
-              Made with ❤️ by Fred.
+              Made with ❤️ by Fred. 
             </div>
           </div>
         </div>

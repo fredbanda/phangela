@@ -46,7 +46,7 @@ Keep the tone professional, concise, and impactful.
   };
 
   return (
-    <div className="w-full shadow-lg border-t-4 rounded-lg mb-4">
+    <div className="w-full shadow-lg border-t-4 rounded-lg mb-20">
       <div className="flex justify-between my-2 mt-4 mr-2">
         <h2
           className="text-2xl font-bold mb-5"
