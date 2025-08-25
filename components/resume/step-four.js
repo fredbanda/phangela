@@ -16,7 +16,7 @@ export default function StepFour({ resume }) {
   } = useResume();
 
   return (
-    <div className="w-full p-5 shadow-lg border-t-4 rounded-lg overflow-y-auto mb-20">
+    <div className="w-full p-5 shadow-lg border-t-4 rounded-lg overflow-y-auto mb-40">
       <h2
         className="text-2xl font-bold mb-5"
         style={{ color: resume?.themeColor }}
