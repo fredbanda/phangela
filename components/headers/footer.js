@@ -24,7 +24,7 @@ export default function Footer() {
       </Link>
 
       <div className="text-center sm:text-left">
-        Made with ❤️ by <Link href="mailto:ndabegeba@gmail.com">Fred. Email me for your projects</Link>
+        Made with ❤️ by <Link href="mailto:ndabegeba@gmail.com">Eunny Tech. Email me for your projects</Link>
       </div>
 
     </div>
