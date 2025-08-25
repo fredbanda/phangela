@@ -36,253 +36,137 @@ const ResumeActions = ({ currentResume, params, resumeRef }) => {
   };
 
   // Resume Print function
-  const printResume = () => {
-    console.log('ResumeActions: Print function called');
-    console.log('ResumeActions: Print - currentResume:', !!currentResume);
-    console.log('ResumeActions: Print - resumeRef.current:', !!resumeRef?.current);
-    
-    if (typeof window !== 'undefined' && currentResume && resumeRef.current) {
-      const printWindow = window.open('', '_blank');
-      const resumeContent = resumeRef.current.innerHTML;
-      
-      // Get all stylesheets from the current page
-      const stylesheets = Array.from(document.styleSheets)
-        .map(styleSheet => {
-          try {
-            return Array.from(styleSheet.cssRules)
-              .map(rule => rule.cssText)
-              .join('\n');
-          } catch (e) {
-            // Handle CORS issues with external stylesheets
-            console.warn('Could not access stylesheet:', styleSheet.href);
-            return '';
-          }
-        })
-        .join('\n');
+const printResume = () => {
+  console.log('ResumeActions: Print function called');
 
-      // Get computed styles for common elements to ensure they're preserved
-      const getComputedStylesForElement = (selector) => {
-        const element = resumeRef.current.querySelector(selector);
-        if (element) {
-          const computedStyle = window.getComputedStyle(element);
-          return {
-            fontFamily: computedStyle.fontFamily,
-            fontSize: computedStyle.fontSize,
-            fontWeight: computedStyle.fontWeight,
-            color: computedStyle.color,
-            lineHeight: computedStyle.lineHeight,
-            marginTop: computedStyle.marginTop,
-            marginBottom: computedStyle.marginBottom,
-            paddingTop: computedStyle.paddingTop,
-            paddingBottom: computedStyle.paddingBottom,
-          };
+  if (typeof window !== 'undefined' && currentResume && resumeRef.current) {
+    const printWindow = window.open('', '_blank');
+    const resumeContent = resumeRef.current.innerHTML;
+
+    // Enhanced style extraction for print
+    const existingStyles = Array.from(document.styleSheets)
+      .map(styleSheet => {
+        try {
+          return Array.from(styleSheet.cssRules)
+            .filter(rule => {
+              const cssText = rule.cssText.toLowerCase();
+              // Keep layout-related rules, exclude problematic ones
+              return (
+                cssText.includes('display:') ||
+                cssText.includes('flex') ||
+                cssText.includes('grid') ||
+                cssText.includes('position:') ||
+                cssText.includes('width:') ||
+                cssText.includes('height:') ||
+                cssText.includes('margin:') ||
+                cssText.includes('padding:') ||
+                cssText.includes('overflow:') ||
+                cssText.includes('page-break')
+              ) && !cssText.includes('color:');
+            })
+            .map(rule => rule.cssText)
+            .join('\n');
+        } catch (e) {
+          return '';
         }
-        return {};
-      };
+      })
+      .join('\n');
 
-      // Extract key styles for common resume elements
-      const titleStyle = getComputedStylesForElement('h1, .name, .resume-name');
-      const sectionTitleStyle = getComputedStylesForElement('h2, .section-title');
-      const jobTitleStyle = getComputedStylesForElement('.job-title, .position-title');
-      const companyStyle = getComputedStylesForElement('.company, .company-name');
-      const bulletStyle = getComputedStylesForElement('.bullet-point, ul li');
-
-      printWindow.document.write(`
-        <html>
-          <head>
-            <title>Print Resume - ${currentResume.name || 'Resume'}</title>
-            <meta charset="utf-8">
-            <style>
-              @page { 
-                size: A4; 
-                margin: 15mm; 
-              }
-              
-              * {
-                box-sizing: border-box;
-              }
-              
-              body { 
-                margin: 0; 
-                padding: 0;
-                font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
-                font-size: 10px; 
-                line-height: 1.2; 
-                color: #333;
-                background: white;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-              }
-              
-              .print-container { 
-                background: white; 
+    printWindow.document.write(`
+      <html>
+        <head>
+          <title>Print Resume - ${currentResume.name || 'Resume'}</title>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <link rel="stylesheet" href="/styles/print-resume.css">
+          <style>
+            @page {
+              size: A4;
+              margin: 1cm;
+            }
+            body {
+              font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+              background: white !important;
+              margin: 0;
+              padding: 0;
+              box-sizing: border-box;
+            }
+            .print-container {
+              max-width: 800px;
+              margin: 0 auto;
+              padding: 20px;
+              box-sizing: border-box;
+              overflow: visible;
+            }
+            /* Preserve original layout styles */
+            ${existingStyles}
+            /* Print-specific overrides */
+            @media print {
+              .print-container {
                 width: 100%;
-                max-width: none;
-                padding: 0;
-                margin: 0;
+                max-width: 100%;
               }
-              
-              /* Prevent awkward breaks */
-              .job-entry, .education-entry, .section { 
-                page-break-inside: avoid; 
-                margin: 0 0 4px 0;
-                padding: 0;
+              .header, .resume-header, .personal-info, .contact-info {
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                text-align: center !important; /* Center text content */
+                margin: 0 auto !important; /* Center block elements */
+                width: 100%; /* Ensure full width for centering */
               }
-              
-              h1, h2, h3, .section-title { 
-                page-break-after: avoid; 
-                margin: 0;
-                padding: 0;
+              /* Ensure child elements respect centering */
+              .header *, .resume-header *, .personal-info *, .contact-info * {
+                text-align: center !important;
               }
-              
-              /* Resume-specific styles - BLACK AND WHITE ONLY */
-              h1, .name, .resume-name {
-                font-size: 20px !important;
-                font-weight: 700 !important;
-                margin: 0 !important;
-                padding: 0 !important;
-                color: black !important;
-                text-decoration: none !important;
-              }
-              
-              h2, .section-title {
-                font-size: 13px !important;
-                font-weight: 600 !important;
-                margin: 8px 0 3px 0 !important;
-                padding: 0 0 1px 0 !important;
-                color: black !important;
-                border-bottom: 1px solid black !important;
-                text-decoration: none !important;
-              }
-              
-              .job-title, .position-title {
-                font-size: 11px !important;
-                font-weight: 600 !important;
-                color: black !important;
-                margin: 4px 0 1px 0 !important;
-                padding: 0 !important;
-                text-decoration: none !important;
-              }
-              
-              .company, .company-name {
-                font-size: 10px !important;
-                font-weight: 500 !important;
-                color: black !important;
-                margin: 0 !important;
-                padding: 0 !important;
-                text-decoration: none !important;
-              }
-              
-              .date-location, .date-range {
-                font-size: 9px !important;
-                color: black !important;
-                margin: 0 0 2px 0 !important;
-                padding: 0 !important;
-                text-decoration: none !important;
-              }
-              
-              .bullet-point, .description {
-                font-size: 9px !important;
-                line-height: 1.2 !important;
-                color: black !important;
-                margin: 1px 0 !important;
-                padding: 0 !important;
-                text-decoration: none !important;
-              }
-              
-              .bullet-point {
-                margin-left: 8px !important;
-                text-indent: -8px !important;
-              }
-              
-              /* Contact info */
-              .contact-info, .contact-info * {
-                font-size: 9px !important;
-                color: black !important;
-                margin: 0 0 4px 0 !important;
-                padding: 0 !important;
-                text-decoration: none !important;
-                line-height: 1.2 !important;
-              }
-              
-              /* Skills and other sections */
-              .skills-list, .skill-item {
-                font-size: 9px !important;
-                color: black !important;
-                text-decoration: none !important;
-                margin: 0 !important;
-                padding: 0 !important;
-              }
-              
-              /* Dividers */
-              .divider, hr {
-                border: none !important;
-                border-bottom: 1px solid black !important;
-                margin: 2px 0 !important;
-                padding: 0 !important;
-              }
-              
-              /* Remove ALL colors and underlines */
+              /* Prevent content from being cut off */
               * {
-                color: black !important;
-                text-decoration: none !important;
+                overflow: visible !important;
+                page-break-inside: avoid;
               }
-              
-              a, a:visited, a:hover, a:active {
-                color: black !important;
-                text-decoration: none !important;
+              /* Force page breaks for large sections */
+              h1, h2, h3, h4, h5, h6 {
+                page-break-after: avoid;
+                page-break-inside: avoid;
               }
-              
-              /* Ensure proper spacing - MINIMAL GAPS */
-              p {
-                margin: 0 !important;
-                padding: 0 !important;
+              /* Ensure images and tables don’t overflow */
+              img, table {
+                max-width: 100%;
+                height: auto;
               }
-              
-              div {
-                margin: 0 !important;
-                padding: 0 !important;
-              }
-              
-              /* Remove any default spacing from common elements */
-              ul, ol {
-                margin: 0 !important;
-                padding: 0 !important;
-              }
-              
-              li {
-                margin: 0 !important;
-                padding: 0 !important;
-              }
-              
-              /* Hide any unwanted elements */
-              button, .no-print, .print-button {
-                display: none !important;
-              }
-              
-              /* Custom styles from your app */
-              ${stylesheets}
-            </style>
-          </head>
-          <body>
-            <div class="print-container">
-              ${resumeContent}
-            </div>
-          </body>
-        </html>
-      `);
-      
-      printWindow.document.close();
-      printWindow.focus();
-      
-      // Wait for content and styles to load before printing
-      setTimeout(() => {
+            }
+          </style>
+        </head>
+        <body>
+          <div class="print-container">
+            ${resumeContent}
+          </div>
+        </body>
+      </html>
+    `);
+
+    printWindow.document.close();
+
+    // Wait for external stylesheet to load before printing
+    const stylesheet = printWindow.document.querySelector('link[href="/styles/print-resume.css"]');
+    if (stylesheet) {
+      stylesheet.onload = () => {
+        printWindow.focus();
         printWindow.print();
-        // Don't auto-close to let user see the preview
-        // printWindow.close();
-      }, 1500);
+      };
+      stylesheet.onerror = () => {
+        console.error('Failed to load print stylesheet');
+        printWindow.focus();
+        printWindow.print();
+      };
+    } else {
+      // Fallback if no stylesheet is loaded
+      setTimeout(() => {
+        printWindow.focus();
+        printWindow.print();
+      }, 500);
     }
-  };
+  }
+};
 
   // Resume share function
   const shareResume = () => {
@@ -359,7 +243,7 @@ const ResumeActions = ({ currentResume, params, resumeRef }) => {
               }
               return (
                 <Button 
-                  className="w-full sm:w-32 text-sm bg-black text-white"
+                  className="w-full sm:w-32 text-sm bg-black text-white hover:bg-black"
                   disabled={loading}
                 >
                   {loading ? 'Generating...' : error ? 'Error - Try Again' : 'Download PDF'}
@@ -368,7 +252,7 @@ const ResumeActions = ({ currentResume, params, resumeRef }) => {
             }}
           </PDFDownloadLink>
         ) : (
-          <Button className="w-full sm:w-32 text-sm bg-black text-white" disabled>
+          <Button className="w-full sm:w-32 text-sm bg-black text-white hover:bg-gray-600" disabled>
             Download PDF
           </Button>
         )}
@@ -386,7 +270,7 @@ const ResumeActions = ({ currentResume, params, resumeRef }) => {
         </div>
         <Button 
           onClick={printResume} 
-          className="w-full sm:w-32 text-sm bg-orange-500 text-white" 
+          className="w-full sm:w-32 text-sm bg-orange-500 text-white hover:bg-orange-600" 
           disabled={!currentResume}
         >
           Print
@@ -405,7 +289,7 @@ const ResumeActions = ({ currentResume, params, resumeRef }) => {
         </div>
         <Button 
           onClick={shareResume} 
-          className="w-full sm:w-32 text-sm bg-red-600 text-white" 
+          className="w-full sm:w-32 text-sm bg-red-600 text-white  hover:bg-red-800" 
           disabled={!currentResume}
         >
           Share

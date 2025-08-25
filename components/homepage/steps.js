@@ -1,6 +1,6 @@
 export default function HowItWorks() {
   return (
-<div className="container mx-auto p-6 mb-20">
+<div className="container mx-auto p-6 mb-40">
       <h2 className="text-4xl font-bold text-center mb-12 transition-transform duration-500 transform hover:scale-105">
         How It Works
       </h2>
